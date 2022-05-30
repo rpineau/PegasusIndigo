@@ -1,0 +1,2 @@
+2|Pegasus Astro|Indigo|Indigo 7 position filter wheel| |libPegasusIndigo||1|1|1|
+
