@@ -303,7 +303,7 @@ int CPegasusIndigo::moveToFilterIndex(int nTargetPosition)
     m_sLogFile.flush();
 #endif
 
-    ssTmp << "WM:" << ssTmp << "\n";
+    ssTmp << "WM:" << nTargetPosition << "\n";
     nErr = sendCommand(ssTmp.str(), sResp);
     if(nErr) {
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
@@ -335,7 +335,7 @@ int CPegasusIndigo::isMoveToComplete(bool &bComplete)
     nErr = sendCommand("WR\n", sResp);
     if(nErr) {
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
-        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [moveToFilterIndex] Error Getting response from sendCommand : " << nErr << std::endl;
+        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [isMoveToComplete] Error Getting response from sendCommand : " << nErr << std::endl;
         m_sLogFile.flush();
 #endif
         return nErr;
@@ -345,7 +345,7 @@ int CPegasusIndigo::isMoveToComplete(bool &bComplete)
     nErr = parseFields(sResp, vFieldsData, ':');
     if(nErr) {
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
-        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [moveToFilterIndex] Errorparsing response : " << nErr << std::endl;
+        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [isMoveToComplete] Errorparsing response : " << nErr << std::endl;
         m_sLogFile.flush();
 #endif
         return nErr;
@@ -360,7 +360,7 @@ int CPegasusIndigo::isMoveToComplete(bool &bComplete)
     nErr = getCurrentSlot(nFilterSlot);
     if(nErr) {
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
-        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [moveToFilterIndex] Error Getting current slot : " << nErr << std::endl;
+        m_sLogFile << "["<<getTimeStamp()<<"]"<< " [isMoveToComplete] Error Getting current slot : " << nErr << std::endl;
         m_sLogFile.flush();
 #endif
 
@@ -372,7 +372,7 @@ int CPegasusIndigo::isMoveToComplete(bool &bComplete)
     }
 
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
-    m_sLogFile << "["<<getTimeStamp()<<"]"<< " [moveToFilterIndex] bComplete : " << (bComplete?"Yes":"No") << std::endl;
+    m_sLogFile << "["<<getTimeStamp()<<"]"<< " [isMoveToComplete] bComplete : " << (bComplete?"Yes":"No") << std::endl;
     m_sLogFile.flush();
 #endif
 

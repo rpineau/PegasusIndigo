@@ -37,7 +37,7 @@
 #include "../../licensedinterfaces/sberrorx.h"
 #include "../../licensedinterfaces/serxinterface.h"
 
-#define PLUGIN_DEBUG 2
+// #define PLUGIN_DEBUG 2
 #define PLUGIN_VERSION      1.0
 
 

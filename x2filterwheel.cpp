@@ -194,7 +194,7 @@ int	X2FilterWheel::startFilterWheelMoveTo(const int& nTargetPosition)
     
     if(m_bLinked) {
         X2MutexLocker ml(GetMutex());
-        nErr = m_PegasusIndigo.moveToFilterIndex(nTargetPosition);
+        nErr = m_PegasusIndigo.moveToFilterIndex(nTargetPosition+1);
         if(nErr)
             nErr = ERR_CMDFAILED;
     }
