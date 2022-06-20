@@ -260,6 +260,7 @@ int CPegasusIndigo::getFirmwareVersion(std::string &sVersion)
 {
     int nErr = 0;
     std::string sResp;
+    std::vector<std::string> vFieldsData;
 
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
     m_sLogFile << "["<<getTimeStamp()<<"]"<< " [getFirmwareVersion] Called" << std::endl;
@@ -278,7 +279,14 @@ int CPegasusIndigo::getFirmwareVersion(std::string &sVersion)
         return nErr;
     }
 
-    sVersion.assign(sResp);
+    nErr = parseFields(sResp, vFieldsData, ':');
+    if(nErr)
+        return ERR_CMDFAILED;
+
+    if(vFieldsData.size()>1)
+        sVersion = vFieldsData[1];
+    else
+        sVersion = "Unknown";
 
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
     m_sLogFile << "["<<getTimeStamp()<<"]"<< " [getFirmwareVersion] Firmware : " << sVersion << std::endl;
